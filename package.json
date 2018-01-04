@@ -1,14 +1,13 @@
 {
-	"name": "ReactNativeUniversal",
+	"name": "SafePass",
 	"version": "0.0.1",
 	"private": true,
 	"main": "main.electron.js",
-	"###": "per https://medium.freecodecamp.com/building-an-electron-application-with-create-react-app-97945861647c",
-	"homepage": "./",
 	"scripts": {
 		"web": "node webpack/scripts/start.js",
 		"web-build": "node webpack/scripts/build.js",
-		"android": "react-native run-android",
+		"deploy": "npm run web-build && cd build && now",
+		"android": "node ./node_modules/react-native/cli.js run-android",
 		"desktop": "concurrently 'node webpack/scripts/start.js --electron' 'wait-on tcp:localhost:3000 && ELECTRON_START_URL=http://localhost:3000 electron .'",
 		"desktop-build": "node webpack/scripts/build.js --electron && electron-packager --overwrite --out=build-electron ."
 	},
@@ -17,6 +16,7 @@
 		"babel-loader": "6.2.10",
 		"babel-preset-es2015": "^6.24.1",
 		"babel-preset-react": "^6.24.1",
+		"cryptorjs": "^2.1.0",
 		"detect-port": "1.1.0",
 		"dotenv": "2.0.0",
 		"electron": "^1.6.5",
@@ -55,6 +55,7 @@
 		"http-proxy-middleware": "0.17.3",
 		"jest": "18.1.0",
 		"json-loader": "0.5.4",
+		"now": "^9.0.1",
 		"object-assign": "4.1.1",
 		"postcss-loader": "1.2.2",
 		"promise": "7.1.1",

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {ListView, StyleSheet, Text, View,} from 'react-native';
 
 import Ball from './Ball'
+import SafePass from './SafePass'
 import PlatformSpecificBall from './PlatformSpecificBall'
 
 const smileyImage = require('../images/Smiley.png');
@@ -36,7 +37,8 @@ const styles = StyleSheet.create({
     }
 });
 
-export default class BallsList extends Component {
+export default SafePass
+ class BallsList extends Component {
 
 
     constructor(props) {
