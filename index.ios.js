@@ -4,15 +4,18 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {AppRegistry} from 'react-native';
+import React, { Component } from 'react'
+import { AppRegistry } from 'react-native'
 
-import BallsList from './app/BallsList';
+import Root from './app/Root'
 
 export default class ReactNativeUniversal extends Component {
-    render() {
-        return <BallsList/>;
-    }
+  render() {
+    return <Root />
+  }
 }
 
-AppRegistry.registerComponent('ReactNativeUniversal', () => ReactNativeUniversal);
+AppRegistry.registerComponent(
+  'ReactNativeUniversal',
+  () => ReactNativeUniversal
+)
