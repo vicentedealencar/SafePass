@@ -9,13 +9,10 @@ import { AppRegistry } from 'react-native'
 
 import Root from './app/Root'
 
-export default class ReactNativeUniversal extends Component {
+export default class SafePass extends Component {
   render() {
     return <Root />
   }
 }
 
-AppRegistry.registerComponent(
-  'ReactNativeUniversal',
-  () => ReactNativeUniversal
-)
+AppRegistry.registerComponent('SafePass', () => SafePass)

@@ -1,3 +1,3 @@
-import SafePass from './SafePass'
+import SafePassPage from './SafePassPage'
 
-export default SafePass
+export default SafePassPage
