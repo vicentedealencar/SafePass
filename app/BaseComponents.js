@@ -17,12 +17,15 @@ export const TextInput = props => (
   />
 )
 
+export const PassInput = props => <TextInput {...props} secureTextEntry />
+
 export const Title = props => (
   <Text
     style={{
       fontWeight: 'bold',
       fontSize: 30,
-      padding: 10
+      padding: 10,
+      alignSelf: 'center'
     }}
     {...props}
   />

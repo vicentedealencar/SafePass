@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   TextInput,
+  PassInput,
   Title,
   ViewBox,
   ViewSpaced,
@@ -20,7 +21,7 @@ class SafePassPage extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={{ alignSelf: 'center' }}>
         <Title>SAFEPASS</Title>
         {this.state.screen === 'first' ? (
           <SafePassFirstScreen
@@ -64,7 +65,7 @@ class SafePassFirstScreen extends React.Component {
       <ViewBox>
         <ViewSpaced>
           pass:
-          <TextInput
+          <PassInput
             value={this.state.pass}
             onChangeText={pass => this.setState({ pass })}
           />
@@ -101,7 +102,7 @@ class SafePassSecondScreen extends React.Component {
       <ViewBox>
         <ViewSpaced>
           pass:
-          <TextInput
+          <PassInput
             value={this.state.pass || this.props.pass}
             onChangeText={pass => this.setState({ pass })}
           />
@@ -110,6 +111,7 @@ class SafePassSecondScreen extends React.Component {
           content:
           <TextInput
             multiline
+            numberOfLines={10}
             onChangeText={textarea => this.setState({ textarea })}
             value={this.state.textarea || this.props.content}
           />
