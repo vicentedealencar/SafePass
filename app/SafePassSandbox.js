@@ -39,9 +39,11 @@ class SafePassEncoder extends React.Component {
         <ViewSpaced>
           <Button
             title="encode!"
-            onPress={encode(this.state.pass, this.state.textarea, encoded =>
-              this.setState({ encoded })
-            )}
+            onPress={e =>
+              this.setState({
+                encoded: encode(this.state.pass, this.state.textarea)
+              })
+            }
           />
         </ViewSpaced>
         <ViewSpaced>
@@ -82,9 +84,11 @@ class SafePassDecoder extends React.Component {
         <ViewSpaced>
           <Button
             title="decode!"
-            onPress={decode(this.state.pass, this.state.textarea, decoded =>
-              this.setState({ decoded })
-            )}
+            onPress={e =>
+              this.setState({
+                decoded: decode(this.state.pass, this.state.textarea)
+              })
+            }
           />
         </ViewSpaced>
         <ViewSpaced>

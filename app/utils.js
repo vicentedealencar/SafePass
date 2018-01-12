@@ -1,18 +1,17 @@
 import cryptorjs from 'cryptorjs'
 
-export const encode = (pass, content, cb) => e => {
+export const encode = (pass, content) => {
   const myCryptor = new cryptorjs(pass)
 
   const encoded = myCryptor.encode(content)
 
-  cb(encoded)
+  return encoded
 }
 
-export const decode = (pass, encoded, cb) => e => {
+export const decode = (pass, encoded) => {
   const myCryptor = new cryptorjs(pass)
 
   const decoded = myCryptor.decode(encoded)
-  console.log(encoded, decoded)
 
-  cb(decoded)
+  return decoded
 }

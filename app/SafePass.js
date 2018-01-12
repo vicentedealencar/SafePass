@@ -7,7 +7,9 @@ import {
   Button,
   View
 } from './BaseComponents'
-//import { encode, decode } from './utils'
+import { encode, decode } from './utils'
+import TextFileReader from './TextFileReader'
+import DownloadButton from './DownloadButton'
 
 class SafePassPage extends React.Component {
   state = {
@@ -25,10 +27,23 @@ class SafePassPage extends React.Component {
             onNext={(decoded, pass) =>
               this.setState({ screen: 'second', decoded, pass })
             }
+            onNew={() =>
+              this.setState({
+                screen: 'second',
+                decoded: '',
+                pass: ''
+              })
+            }
           />
         ) : (
           <SafePassSecondScreen
-            onNext={() => this.setState({ screen: 'first' })}
+            onNext={() =>
+              this.setState({
+                screen: 'first',
+                decoded: null,
+                pass: null
+              })
+            }
             content={this.state.decoded}
             pass={this.state.pass}
           />
@@ -40,14 +55,13 @@ class SafePassPage extends React.Component {
 
 class SafePassFirstScreen extends React.Component {
   state = {
-    pass: ''
+    pass: '',
+    encoded: null
   }
 
   render() {
     return (
       <ViewBox>
-        <Title>pass and file:</Title>
-
         <ViewSpaced>
           pass:
           <TextInput
@@ -55,13 +69,22 @@ class SafePassFirstScreen extends React.Component {
             onChangeText={pass => this.setState({ pass })}
           />
         </ViewSpaced>
-        <ViewSpaced>//TODO file picker (?)</ViewSpaced>
-        <Button
-          title="go"
-          onPress={() =>
-            this.props.onNext('//TODO secret decoded msg', this.state.pass)
-          }
-        />
+        <ViewSpaced>
+          <TextFileReader onText={encoded => this.setState({ encoded })} />
+        </ViewSpaced>
+        <ViewSpaced>
+          <Button
+            title="decode!"
+            disabled={!this.state.pass || !this.state.encoded}
+            onPress={() =>
+              this.props.onNext(
+                decode(this.state.pass, this.state.encoded),
+                this.state.pass
+              )
+            }
+          />
+        </ViewSpaced>
+        <Button title="novo arquivo" onPress={this.props.onNew} />
       </ViewBox>
     )
   }
@@ -76,7 +99,13 @@ class SafePassSecondScreen extends React.Component {
   render() {
     return (
       <ViewBox>
-        <Title>decoded content and pass:</Title>
+        <ViewSpaced>
+          pass:
+          <TextInput
+            value={this.state.pass || this.props.pass}
+            onChangeText={pass => this.setState({ pass })}
+          />
+        </ViewSpaced>
         <ViewSpaced>
           content:
           <TextInput
@@ -86,13 +115,21 @@ class SafePassSecondScreen extends React.Component {
           />
         </ViewSpaced>
         <ViewSpaced>
-          pass:
-          <TextInput
-            value={this.state.pass || this.props.pass}
-            onChangeText={pass => this.setState({ pass })}
+          <DownloadButton
+            disabled={
+              !(this.state.pass || this.props.pass) ||
+              !(this.state.textarea || this.props.content)
+            }
+            encode={() =>
+              encode(
+                this.state.pass || this.props.pass,
+                this.state.textarea || this.props.content
+              )
+            }
           />
+          {this.state.encoded}
         </ViewSpaced>
-        <Button title="go" onPress={this.props.onNext} />
+        <Button title="voltar" onPress={this.props.onNext} />
       </ViewBox>
     )
   }
