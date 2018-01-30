@@ -31,7 +31,7 @@ export default class SafePassSecondScreen extends React.Component {
             multiline
             numberOfLines={10}
             onChangeText={textarea => this.setState({ textarea })}
-            value={this.state.textarea || this.props.content}
+            value={this.state.textarea === '' ? '' : this.state.textarea || this.props.content}
           />
         </ViewSpaced>
         <ViewSpaced>
