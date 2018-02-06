@@ -12,34 +12,43 @@ export default class SafePassPage extends React.Component {
 
   render() {
     return (
-      <View style={{ alignSelf: 'center' }}>
-        <Title>SAFEPASS</Title>
-        {this.state.screen === 'first' ? (
-          <SafePassFirstScreen
-            onNext={(decoded, pass) =>
-              this.setState({ screen: 'second', decoded, pass })
-            }
-            onNew={() =>
-              this.setState({
-                screen: 'second',
-                decoded: '',
-                pass: ''
-              })
-            }
-          />
-        ) : (
-          <SafePassSecondScreen
-            onNext={() =>
-              this.setState({
-                screen: 'first',
-                decoded: null,
-                pass: null
-              })
-            }
-            content={this.state.decoded}
-            pass={this.state.pass}
-          />
-        )}
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      >
+        <View style={{ maxWidth: 700, flex: 1 }}>
+          <Title>SAFEPASS</Title>
+          {this.state.screen === 'first' ? (
+            <SafePassFirstScreen
+              onNext={(decoded, pass) =>
+                this.setState({ screen: 'second', decoded, pass })
+              }
+              onNew={() =>
+                this.setState({
+                  screen: 'second',
+                  decoded: '',
+                  pass: ''
+                })
+              }
+            />
+          ) : (
+            <SafePassSecondScreen
+              onNext={() =>
+                this.setState({
+                  screen: 'first',
+                  decoded: null,
+                  pass: null
+                })
+              }
+              content={this.state.decoded}
+              pass={this.state.pass}
+            />
+          )}
+        </View>
       </View>
     )
   }
