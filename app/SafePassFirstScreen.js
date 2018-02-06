@@ -13,10 +13,10 @@ export default class SafePassFirstScreen extends React.Component {
     return (
       <ViewBox>
         <ViewSpaced>
-          pass:
           <PassInput
             value={this.state.pass}
             onChangeText={pass => this.setState({ pass })}
+            placeholder="senha"
           />
         </ViewSpaced>
         <ViewSpaced>
@@ -24,7 +24,7 @@ export default class SafePassFirstScreen extends React.Component {
         </ViewSpaced>
         <ViewSpaced>
           <Button
-            title="decode!"
+            title="decodificar"
             disabled={!this.state.pass || !this.state.encoded}
             onPress={() =>
               this.props.onNext(
@@ -34,7 +34,11 @@ export default class SafePassFirstScreen extends React.Component {
             }
           />
         </ViewSpaced>
-        <Button title="novo arquivo" onPress={this.props.onNew} />
+        <Button
+          title="novo arquivo"
+          onPress={this.props.onNew}
+          color="#53acf3"
+        />
       </ViewBox>
     )
   }

@@ -31,7 +31,6 @@ export default class extends React.Component {
 
     return (
       <Button
-        title="encode & download"
         {...otherProps}
         onPress={e => {
           const encoded = encode()

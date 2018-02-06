@@ -19,23 +19,28 @@ export default class SafePassSecondScreen extends React.Component {
     return (
       <ViewBox>
         <ViewSpaced>
-          pass:
           <PassInput
             value={this.state.pass || this.props.pass}
             onChangeText={pass => this.setState({ pass })}
+            placeholder="senha"
           />
         </ViewSpaced>
         <ViewSpaced>
-          content:
           <TextInput
             multiline
             numberOfLines={10}
             onChangeText={textarea => this.setState({ textarea })}
-            value={this.state.textarea === '' ? '' : this.state.textarea || this.props.content}
+            value={
+              this.state.textarea === ''
+                ? ''
+                : this.state.textarea || this.props.content
+            }
+            placeholder="conteúdo secreto"
           />
         </ViewSpaced>
         <ViewSpaced>
           <DownloadButton
+            title="codificar & baixar"
             disabled={
               !(this.state.pass || this.props.pass) ||
               !(this.state.textarea || this.props.content)
@@ -49,7 +54,7 @@ export default class SafePassSecondScreen extends React.Component {
           />
           {this.state.encoded}
         </ViewSpaced>
-        <Button title="voltar" onPress={this.props.onNext} />
+        <Button title="voltar" onPress={this.props.onNext} color="#53acf3" />
       </ViewBox>
     )
   }
