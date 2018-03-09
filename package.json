@@ -8,13 +8,10 @@
     "web-build": "node webpack/scripts/build.js",
     "deploy": "npm run web-build && cd build && now",
     "android": "node ./node_modules/react-native/cli.js run-android",
-    "desktop":
-      "concurrently 'npm run desktop-webpack' 'npm run desktop-electron'",
+    "desktop": "concurrently 'npm run desktop-webpack' 'npm run desktop-electron'",
     "desktop-webpack": "node webpack/scripts/start.js --electron",
-    "desktop-electron":
-      "cross-env ELECTRON_START_URL=http://localhost:3000 electron .",
-    "desktop-build":
-      "node webpack/scripts/build.js --electron && electron-packager --overwrite --out=build-electron ."
+    "desktop-electron": "cross-env ELECTRON_START_URL=http://localhost:3000 electron .",
+    "desktop-build": "node webpack/scripts/build.js --electron && electron-packager --overwrite --out=build-electron ."
   },
   "dependencies": {
     "autoprefixer": "6.7.2",
